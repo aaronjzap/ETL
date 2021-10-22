@@ -1,0 +1,5 @@
+1. File "clientes.csv"
+2. Install (if it is not installed yet)
+  2.1 Numpy
+  2.2 Pandas
+3. Run in terminal: "python3 main.py". It will be necessary to enter the path of the "clients.csv".
