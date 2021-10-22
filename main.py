@@ -67,7 +67,8 @@ def Group(df):
 #Save to a sql database
 def To_sql(df): 
   import sqlite3
-  conn = sqlite3.connect('output/database.db3')
+  
+  conn = sqlite3.connect('database.db3')
   c = conn.cursor()
   c.execute('CREATE TABLE IF NOT EXISTS clientes (first_name varchar, last_name text, gender text, fecha_nacimiento date, due_data date, deu_balance int, adress txt, altura int, peso int, email text, status text,  priority int, phone  text, age int, age_group int) ')
   conn.commit()
@@ -87,14 +88,21 @@ def To_sql(df):
 		CREATE TABLE  IF NOT EXISTS  phones  as SELECT fiscal_id,  phone, status, priority FROM clientes
           ''')
   c.execute(''' DROP TABLE  IF  EXISTS clientes''')
-
   c.close()
+  
+def Move():
+  import shutil
+  source = r'database.db3'
+  destination = r'output/database.db3'
+  shutil.move(source,destination)
+  print("Datos guardados en \'output/database.db3\'")
 
 
 
 
 if __name__ == "__main__":
   name = input("Intoduzca la direccion del archivo *.csv: \t")
+  name= 'clientes.csv'
   if len(name)<1:
       print("Compruebe la dirección")
   else:
@@ -104,8 +112,8 @@ if __name__ == "__main__":
     df = Group(df)
     Delinquency(df)
     To_sql(df)
-    print("Datos guardados en \'output/database.db3\'")
-
+    Move()
+    
 
 
 
