@@ -102,7 +102,6 @@ def Move():
 
 if __name__ == "__main__":
   name = input("Intoduzca la direccion del archivo *.csv: \t")
-  name= 'clientes.csv'
   if len(name)<1:
       print("Compruebe la dirección")
   else:
